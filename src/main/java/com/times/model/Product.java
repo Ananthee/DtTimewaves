@@ -1,7 +1,9 @@
 package com.times.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+@Entity
 
 public class Product {
 	@Id
@@ -19,13 +21,16 @@ public class Product {
 		public String description;
 	@Column
 		public String categoryId;
+	@Column
+		public String pimage;
+		
 public Product()
 {
 	
 }
 
 public Product(String productId, String productName, String sellerId, int quantity, int price, String description,
-		String categoryId) {
+		String categoryId,String pimage) {
 	super();
 	this.productId = productId;
 	this.productName = productName;
@@ -34,6 +39,7 @@ public Product(String productId, String productName, String sellerId, int quanti
 	this.price = price;
 	this.description = description;
 	this.categoryId = categoryId;
+	this.pimage=pimage;
 }
 
 public String getProductId() {
@@ -78,5 +84,11 @@ public String getCategory() {
 public void setCategory(String categoryId) {
 	this.categoryId = categoryId;
 }
+public String getPimage() {
+	return pimage;
+}
 
+public void setPimage(String pimage) {
+	this.pimage = pimage;
+}
 }

@@ -25,9 +25,10 @@ public class SupplierDAO {
 		 Transaction tx=session.getTransaction();
 		 tx.begin();
 		 session.save(supplierId);
+		 session.flush();
 		 tx.commit();	 
 	 }
-	/*public List showSupplier()
+	public List showSupplier()
 	{
 		Session s=sessionFactory.openSession();
 		Transaction tx=s.getTransaction();
@@ -35,6 +36,32 @@ public class SupplierDAO {
 		List showsup = s.createQuery("FROM Supplier").list();
 		tx.commit();
 		return showsup;
-	}*/
+	}
+	
+	public void editSupplier(Supplier s)
+	{
+		Session session=sessionFactory.openSession();
+		Transaction tx=	session.getTransaction();
+		tx.begin();
+		Supplier sup=(Supplier)session.get(Supplier.class,s.getSupplierId());
+		sup.setSupplierId(s.getSupplierId());
+		sup.setSupplierName(s.getSupplierName());
+		sup.setSupplierAddress(s.getSupplierAddress());
+		session.update(s);
+		tx.commit();
+		
+	}
+	
+	public void delSupplier(String samplesup)
+	{
+		Session session = sessionFactory.openSession();
+	    Transaction tx = session.getTransaction();
+	    tx.begin();
+	    Supplier s=(Supplier)session.get(Supplier.class,samplesup);
+	    System.out.println(s.getSupplierId());
+	    session.delete(s); 
+	    session.flush();
+	    tx.commit();
+	}
 	
 }

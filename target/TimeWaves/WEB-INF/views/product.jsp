@@ -19,8 +19,17 @@ angular.module('disp_product', []).controller('ProductController', function($sco
 <div ng-app="disp_product" ng-controller="ProductController" align="center">
 Search : <input type="text" placeholder="Search " ng-model="SearchText"/>
 <br/><br/>
-<table>
+<table border="5">
 <tr class="success" ng-repeat="prodt in prodts|filter:SearchText">
+<!-- <th>
+  		<td>Product Id</td>
+		<td>Product Name</td>
+		<td>Seller Id</td>
+		<td>Quantity</td>
+		<td>Price</td>
+		<td>Description</td>
+		<td>Category</td>
+</th> -->
                 <td>{{prodt.productId}}</td>
                 <td>{{prodt.productName}}</td>
                 <td>{{prodt.sellerId}}</td>

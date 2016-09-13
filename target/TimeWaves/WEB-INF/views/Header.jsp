@@ -30,9 +30,8 @@
  
        <li><a href="Register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
       <li><a href="Login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-      <li><a href="Admin"><span class="glyphicon glyphicon-log-in"></span>Admin</a></li>
+      <li><a href="AdminHeader"><span class="glyphicon glyphicon-log-in"></span>Admin</a></li>
     </ul>
   </div>
-</nav>
 </body>
 </html>

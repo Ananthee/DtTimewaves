@@ -17,7 +17,7 @@
   </style>
   
 </head>
-<body style="background-color:#D0C0D0;">
+<body style="background-color:#D0C0D0;" style="background-imgage:url("resources\blueback.jpg");>
 <div class="container-fluid" >
     <div class="navbar-header" >
     <img align="bottom" src="resources/IMG.PNG"  >

@@ -1,11 +1,23 @@
 package com.times.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+
 public class User {
-public String userId;
-public String customerName;
-public String Moblie;
-public String Email;
-public String Address;
+	@Id
+		public String userId;
+	@Column
+		public String customerName;
+	@Column
+		public String Moblie;
+	@Column
+		public String Email;
+	@Column
+		public String Address;
+	
 public User()
 {
 	

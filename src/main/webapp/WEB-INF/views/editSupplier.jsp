@@ -1,15 +1,15 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<jsp:include page="Admin.jsp"></jsp:include>
+<jsp:include page="AdminHeader.jsp"></jsp:include>
 
-<form:form action="editSupplier" method="GET" commandName="editsupplier">
+<form:form action="editSupplier" method="GET" commandName="supplier">
 
-  Category ID:<form:input path="cid"  />
+  Supplier ID:<form:input path="supplierId" readonly="true" />
   <br/>
   <br/>
-  Category Name:<form:input path="cname" />
+  Supplier Name:<form:input path="supplierName" />
   <br/>
  <br/>
-  Category Description:<form:textarea path="cdesc" />
+  Supplier Description:<form:input path="supplierAddress" />
  <br>
 <br/>
 	<input type="Submit" value="Edit"/>

@@ -1,7 +1,8 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 <script>
   var prod = ${list};
-  angular.module('showProduct',[]).controller('SupplierController', function($scope)
+  angular.module('repeatSample',[]).controller('SupplierController', function($scope)
    {
           $scope.Supplier=prod
    
@@ -13,26 +14,34 @@
               
     });
 </script>
-<jsp:include page="Admin.jsp"></jsp:include>
-  <div class="container">
-<div class="span12" style="text-align: justify; font-size: large; color:silver;">
- <div ng-app="showSupplier" ng-controller="SupplierController">
- <br/><br/>
- <div class="row">
+<jsp:include page="AdminHeader.jsp"></jsp:include>
+  <div class="container" color="#D0C0D0;">
+  <form:form commandName="editSupplier">
+  <div class="span12" style="text-align: justify; font-size: large; color:black;">
+  <div ng-app="repeatSample" ng-controller="SupplierController">
+  <br/><br/>
+  <div class="row">
 Search:<input type=text placeholder="Search" ng-model="searchText"/>
-</div>
-<div id="headin2"><strong> <h3>Supplier List </h3></strong></div>
-
-<table width=\"100%\" border=\"0\" id=\"tab\">
-<tr><th id=\"td1\">SUPPLIER ID</th><th id=\"td2\">SUPPLIER NAME</th>
-              <th id=\"td3\">DESCRIPTION</th><th id=\"td4\">EDIT</th><th id=\"td5\">DELETE</th>
+  </div>
+  <div id="headin2"><strong> <h4>SUPPLIER DETAILS </h4></strong></div>
+  <table width=\"100%\" border=\"0\" id=\"tab\">
+  <tr>
+    <th id=\"td1\"> SUPPLIER ID	</th>
+    <th id=\"td2\">	SUPPLIER NAME	</th>
+    <th id=\"td3\">	DESCRIPTION	</th>
+    <th id=\"td4\">	EDIT	</th>
+    <th id=\"td5\">	DELETE	</th>
  </tr>
  <tr class="success" ng-repeat="sup in Supplier|filter:searchText">
- <td>{{sup.sid}}</td><td>{{sup.sname}}</td><td>{{sup.sdesc}}</td>
- <td><a href="editSupplier" name="edit" value="Edit">Edit</a></td>
-<td><a href="delSupplier?{{sid=sup.sid}}" value="Delete" name="delete" >Delete</a>]</td></tr>
-</table>
+ 	<td>{{sup.supplierId}}</td>
+ 	<td>{{sup.supplierName}}</td>
+ 	<td>{{sup.supplierAddress}}</td>
+ 	<td><a href="editSupplier" name="edit" value="Edit">Edit</a></td>
+	<td><a href="delSupplier?id{{supplierId=sup.supplierId}}" value="Delete" name="delete" >Delete</a></td>
+ </tr>
+ </table>
 </div>
 </div>
+</form:form>
 </div>
 
