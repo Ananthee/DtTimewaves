@@ -11,6 +11,8 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
+<body>
+<footer>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4" style="background-color:lavender;">
@@ -25,7 +27,8 @@
     <div class="col-sm-4" style="background-color:lavender;"><p>mail to : timewaves@gmail.com</p></div>
   </div>
 </div>
-
+</footer>
+</body>
 </html>
 
    

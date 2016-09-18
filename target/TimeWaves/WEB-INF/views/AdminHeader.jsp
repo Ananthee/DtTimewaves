@@ -13,15 +13,21 @@
       width: 70%;
       margin: auto;
   }
+  div.img {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 280px;
+}
   </style>
   
 </head>
-<body style="background-color:#D0C0D0;">
+<body background="resources\blueback.jpg">
 
 <nav class="navbar navbar-inverse" color="#D0C0D0;" >
   <div class="container-fluid" >
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">TimeWaves</a>
+      <div class="navbar-header">
+      <a class="navbar-brand" href="#">ADMIN PAGE</a>
     </div>
  <ul class="nav navbar-nav navbar-right">
  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="Product" >Product <span class="caret"></span></a>
@@ -43,15 +49,15 @@
           <li><a href="viewSupplier">View</a></li>
         </ul>
 </li>
-<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="User">User<span class="caret"></span></a>
+<!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="User">User<span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="viewUser">View</a></li>
         </ul>
- </li>    
+ </li> -->    
 </ul>
   </div>
-</nav>
-  
+  </nav>
+   
 </body>
 </html>
 

@@ -22,7 +22,7 @@ public class SupplierController {
 	
 	public String getdata()
 	{
-		ArrayList list=(ArrayList) sdao.showSupplier();
+		ArrayList list=(ArrayList)sdao.showSupplier();
 		Gson gson = new Gson();
 		String jsonInString = gson.toJson(list);
 		return jsonInString;
@@ -30,22 +30,22 @@ public class SupplierController {
 	
 	// INSERT INTO DATABASE
 	@RequestMapping(value="/addSupplier",method=RequestMethod.GET)
-	public ModelAndView addSupplier(Model m)
+	public ModelAndView showSupplier(Model m)
 	{
 		ModelAndView mv=new ModelAndView("addSupplier","supplier",new Supplier());
 		return mv;		
 	}
 	
 	@RequestMapping(value="/addSupplier",method=RequestMethod.POST)
-	public String addSupplier(Supplier supplier,Model m)
+	public ModelAndView  addSupplier(Supplier supplier,Model m)
 	{
 		
 		//System.out.println(supplier.getSupplierId());
 		sdao.addSupplier(supplier);
 		m.addAttribute("list", getdata());
-		System.out.print("Added successfully");
-		return "viewSupplier";
-		
+		ModelAndView mv=new ModelAndView("viewSupplier","supplier",new Supplier());
+		return mv;
+			
 	}
 	
 	// VIEW THE DATAS IN H2 DB
@@ -60,33 +60,40 @@ public class SupplierController {
 	
 	//EDIT VALUES FROM H2 DATABASE
 	@RequestMapping(value="/editSupplier",method=RequestMethod.GET)
-	public ModelAndView editSupplier(@RequestParam("supplierId")String sid,Model m)
+	public ModelAndView editSupplier(@RequestParam("Id")String supplierId,Model m)
 	{
-		ModelAndView mv=new ModelAndView("editSupplier","supplier",new Supplier());
+		
+		Supplier s=sdao.viewSupplier(supplierId);
+		m.addAttribute("Supplier",s);
+		ModelAndView mv=new ModelAndView("editSupplier","supplier",s);
 		return mv;
 	}
 	
 	@RequestMapping(value="/editSupplier",method=RequestMethod.POST)
-	public String editSupplier(Supplier supplier,Model m)
+	public ModelAndView editSupplier(Supplier supplier,Model m)
 	{
 		System.out.println(supplier.getSupplierId());
 	    System.out.println(supplier.getSupplierName());
-		
-		//sdao.editSupplier(supplier);
+		sdao.editSupplier(supplier);
+		m.addAttribute("list", getdata());
 		System.out.println("Added to database");
-		return "editSupplier"; 
+		ModelAndView mv=new ModelAndView("viewSupplier","supplier",new Supplier());
+		return mv; 
 		
 	}
 	
 	// DELETE VALUES FROM H2 DATABASE
 	@RequestMapping(value="/delSupplier",method=RequestMethod.GET)
-	public String delSupplier(@RequestParam("supplierId")String sid,Model m)
+	public ModelAndView delSupplier(@RequestParam("Id")String supplierId,Model m)
 	{
-		sdao.delSupplier(sid);
+		sdao.delSupplier(supplierId);
 		m.addAttribute("list",getdata());
-		return "viewSupplier";
+		ModelAndView mv=new ModelAndView("viewSupplier","showSupplier",new Supplier());
+		return mv;
+		
 	}
 	
 
 
 }
+

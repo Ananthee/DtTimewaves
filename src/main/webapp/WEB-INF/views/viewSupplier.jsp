@@ -16,30 +16,30 @@
 </script>
 <jsp:include page="AdminHeader.jsp"></jsp:include>
   <div class="container" color="#D0C0D0;">
-  <form:form commandName="editSupplier">
+  <form:form commandName="viewSupplier">
   <div class="span12" style="text-align: justify; font-size: large; color:black;">
   <div ng-app="repeatSample" ng-controller="SupplierController">
   <br/><br/>
-  <div class="row">
-Search:<input type=text placeholder="Search" ng-model="searchText"/>
-  </div>
-  <div id="headin2"><strong> <h4>SUPPLIER DETAILS </h4></strong></div>
-  <table width=\"100%\" border=\"0\" id=\"tab\">
+  <div style="color:#DDA0DD;" class="row">
+     Search:<input type=text placeholder="Search" ng-model="searchText"/>
+  <div id="headin2"><strong> <h4 align="center">SUPPLIER DETAILS </h4></strong></div>
+  <table width=\"100%\" border="5 id=\"tab\" align="center">
   <tr>
-    <th id=\"td1\"> SUPPLIER ID	</th>
-    <th id=\"td2\">	SUPPLIER NAME	</th>
-    <th id=\"td3\">	DESCRIPTION	</th>
-    <th id=\"td4\">	EDIT	</th>
-    <th id=\"td5\">	DELETE	</th>
+    <th height="50" style="color:white;" id=\"td1\"> SUPPLIER ID	</th>
+    <th height="50" style="color:white;" id=\"td2\"> SUPPLIER NAME	</th>
+    <th height="50" style="color:white;" id=\"td3\"> DESCRIPTION	</th>
+    <th height="50" style="color:white;" id=\"td4\"> EDIT	</th>
+    <th height="50" style="color:white;" id=\"td5\"> DELETE	</th>
  </tr>
  <tr class="success" ng-repeat="sup in Supplier|filter:searchText">
- 	<td>{{sup.supplierId}}</td>
- 	<td>{{sup.supplierName}}</td>
- 	<td>{{sup.supplierAddress}}</td>
- 	<td><a href="editSupplier" name="edit" value="Edit">Edit</a></td>
-	<td><a href="delSupplier?id{{supplierId=sup.supplierId}}" value="Delete" name="delete" >Delete</a></td>
+ 	<td height="50" style="color:white;">{{sup.supplierId}}</td>
+ 	<td height="50" style="color:white;">{{sup.supplierName}}</td>
+ 	<td height="50" style="color:white;">{{sup.supplierAddress}}</td>
+ 	<td height="50" ><a href="editSupplier?Id={{sup.supplierId}}">Edit</a></td>
+	<td height="50"><a href="delSupplier?Id={{sup.supplierId}}">Delete</a></td>
  </tr>
  </table>
+</div>
 </div>
 </div>
 </form:form>

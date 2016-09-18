@@ -12,7 +12,7 @@ public class User {
 	@Column
 		public String customerName;
 	@Column
-		public String Moblie;
+		public String Mobile;
 	@Column
 		public String Email;
 	@Column
@@ -35,10 +35,10 @@ public void setCustomerName(String customerName) {
 	this.customerName = customerName;
 }
 public String getMoblie() {
-	return Moblie;
+	return Mobile;
 }
-public void setMoblie(String moblie) {
-	Moblie = moblie;
+public void setMoblie(String mobile) {
+	Mobile = mobile;
 }
 public String getEmail() {
 	return Email;

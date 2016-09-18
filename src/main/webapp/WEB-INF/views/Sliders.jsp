@@ -25,8 +25,8 @@
       <img src="resources/img1.jpg" width="30%" height="25%">
       </div>
       <div class="carousel-caption" align="right">
-        <h3>Model 1</h3>
-        <p>The new model arrival.</p>
+        <h3>matrix analog</h3>
+        <p>Rs.200</p>
       </div>
     </div>
 
@@ -35,8 +35,8 @@
       <img src="resources/img2.jpg"  width="30%" height="25%">
       </div>
       <div class="carousel-caption" align="right">
-        <h3>Model 2</h3>
-        <p>the model2.</p>
+        <h3>Current white</h3>
+        <p>Rs.500</p>
       </div>
     </div>
 
@@ -45,8 +45,8 @@
       <img src="resources/img3.jpg" width="30%" height="25%">
       </div>
       <div class="carousel-caption" align="right">
-        <h3>Model3</h3>
-        <p>The model 3.</p>
+        <h3>Espoir analog</h3>
+        <p>Rs.300</p>
       </div>
     </div>
 
@@ -55,8 +55,8 @@
       <img src="resources/img4.jpg" width="30%" height="25%" >
       </div>
       <div class="carousel-caption" align="right">
-        <h3>Model 4</h3>
-        <p>The model 4.</p>
+        <h3>Link collection</h3>
+        <p>Rs.550</p>
       </div>
     </div>
   

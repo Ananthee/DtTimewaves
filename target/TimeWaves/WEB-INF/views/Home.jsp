@@ -23,25 +23,27 @@
   <h2>Image Gallery</h2>
   <div class="row">
     <div class="col-md-4">
-      <a href="resources/img1.jpg" class="thumbnail">
-        <p>Price Rs.4000</p>
-        <img src="resources/img1.jpg" class="img-circle"  style="width:150px;height:150px">
+      <a href="resources/new1.jpg" class="thumbnail">
+        <p>Matrix analog</p>
+        <img src="resources/new1.jpg" class="img-circle"  style="width:150px;height:150px">
       </a>
     </div>
     <div class="col-md-4">
-      <a href="resources/img2.jpg" class="thumbnail">
-        <p>Price Rs.5000</p>
-        <img src="resources/img2.jpg" class="img-circle"style="width:150px;height:150px">
+      <a href="resources/new2.jpg" class="thumbnail">
+        <p>Current white</p>
+        <img src="resources/new2.jpg" class="img-circle"style="width:150px;height:150px">
       </a>
     </div>
     <div class="col-md-4">
       <a href="resources/img3.jpg" class="thumbnail">
-        <p>Price Rs.6000.</p>
+        <p>Espoir analog</p>
         <img src="resources/img3.jpg" class="img-circle" style="width:150px;height:150px">
       </a>
     </div>
   </div>
 </div>
+
+
 <%@include file="/WEB-INF/views/Footer.jsp"%>
 </body>
 </html>

@@ -33,7 +33,7 @@
        
        <beans:property name="packagesToScan">
            <beans:list><beans:value>com.times.model</beans:value></beans:list>      
-        </beans:property>
+       </beans:property>
         
     </beans:bean>
   

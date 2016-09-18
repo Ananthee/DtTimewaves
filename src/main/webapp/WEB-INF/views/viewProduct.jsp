@@ -1,66 +1,68 @@
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 <script>
-var cat = ${catlist};
-var sell = ${selllist};
-  angular.module('repeatSample1', []).controller('reapeterController1', function($scope)
+  var prod = ${list};
+  
+  angular.module('showProduct',[]).controller('ProductController', function($scope)
    {
-                 $scope.Catagory1=cat;                
-                 $scope.Seller1=sell;
-             $scope.sort = function(keyname)
+          $scope.Product=prod;
+       
+   
+          $scope.sort = function(keyname)
           {
               $scope.sortKey = keyname;   //set the sortKey to the param passed
               $scope.reverse = !$scope.reverse; //if true make it false and vice versa
           }
+              
     });
 </script>
+<jsp:include page="AdminHeader.jsp"/>
+<body >
+  <div class="container" color="#D0C0D0;">
+  <form:form commandName="Product">
+<div class="span12" style="text-align: justify; font-size: large; color:black;">
+ <div ng-app="showProduct" ng-controller="ProductController">
+ <br/><br/>
 
-<jsp:include page="AdminHeader.jsp"></jsp:include>
-<div class="bg-content">
-  <div class="container">
-      <div class="span12" style="text-align: justify; font-size: medium; font-family: Script MT Bold; color:black;">
-<h3>Add a Product</h3>
-  <form:form method="POST" modelAttribute="prdt" enctype="multipart/form-data">
-    <fieldset>
-      <legend style="text-align: justify; font-size: medium; font-family: Script MT Bold; color:black;">Product Information</legend>
-      <p>
-      <label for="title" style="text-align: justify; font-size: medium; font-family: Script MT Bold; color:black;" required="true">Product Id:</label>
-         <form:input type="text" path="productId"/>
-      </p>
-      <p>
-      <label for="title" style="text-align: justify; font-size: medium; font-family: Script MT Bold; color:black;" required="true">Product Name:</label>
-         <form:input type="text" path="productName"/>
-      </p>
-<div ng-app="repeatSample1" ng-controller="reapeterController1">
-<p><label for="genre" style="text-align: justify; font-size: medium; font-family: Script MT Bold; color:black;">Category Id:</label>
-         <form:select path="categoryId">
-          <option ng-repeat="cat in Catagory1" value="{{cat.categoryId}}">{{cat.categoryName}}</option>
-         </form:select>
-        </p>
-         <p><label for="genre" style="text-align: justify; font-size: medium; font-family: Script MT Bold; color:black;">Seller Id:</label>
-         <form:select path="sellerId">
-         <option ng-repeat="Sell in Seller1" value="{{Sell.sellerId}}">{{Sell.sellername}}</option>
-         </form:select>
-         </p>
+<div style="color:white;" id="headin2"><strong> <h3 align="center">Product List </h3></strong></div>
+<div align="center">
+<table bgcolor="#00FF00" width=\"100%\" border=\"0\" id=\"tab\" >
+<tr>         <th  bgcolor="white" id=\"td1\">PRODUCT ID</th>
+			 <th  bgcolor="white" id=\"td2\">PRODUCT NAME</th>
+             <th  bgcolor="white" id=\"td3\" >PRODUT DESC</th>
+             <th  bgcolor="white" id=\"td4\">CATEGORY ID</th>
+             <th  bgcolor="white" id=\"td5\">SELLER ID</th>
+             <th  bgcolor="white" id=\"td6\">PRODUCT IMAGE</th>
+             <th  bgcolor="white" id=\"td7\">PRODUCT QUANTITY</th>
+             <th  bgcolor="white" id=\"td8\">PRODUCT PRICE</th>
+             <th  bgcolor="white" id=\"td9\">EDIT</th>
+             <th  bgcolor="white" id=\"td10\">DELETE</th>
+ </tr>
+ <tr class="success" ng-repeat="prod in Product|filter:searchText">
+
+ 	<td bgcolor="white">{{prod.productId}}</td>
+ 	<td bgcolor="white">{{prod.productName}}</td>
+ 	<td bgcolor="white">{{prod.description}}</td>
+ 	<td bgcolor="white">{{prod.categoryId}}</td>
+ 	<td bgcolor="white">{{prod.supplierId}}</td>
+ 	<!-- <td bgcolor="white"><img src="resources/{{prod.pid}}.jpg" height="40" width="40" align="middle"/></td>-->
+ <td ><img src="<c:url value='/resources/{{prod.productId}}.jpg'/>" height="80" width="140" align="middle"/></img></td>
+ 	
+    <td bgcolor="white" >{{prod.quantity}}</td><td bgcolor="white">{{prod.price}}</td>
+ 	<td bgcolor="white"><a href="editProduct?id={{productId=prod.productId}}" style="color:blue">Edit</a></td>
+ 	<td bgcolor="white"><a href="deleteProduct?id={{productId=prod.productId}}" style="color:blue">Delete</a></td>
+ 
+ </tr>
+ </table>
+ </div>
+ </div>
+ </div>
+ </form:form>
+ 
 </div>
-<p><label for="year" style="text-align: justify; font-size: medium; font-family: Script MT Bold; color:black;">Description:</label>
-             <form:input type="text" path="description"/>
-        </p>
-<p><label for="year" style="text-align: justify; font-size: medium; font-family: Script MT Bold; color:black;">Quantity:</label>
-         <form:input type="text" path="quantity"/>
-      </p>
-      <p><label for="year" style="text-align: justify; font-size: medium; font-family: Script MT Bold; color:black;">Price:</label>
-         <form:input type="text" path="price"/>
-      </p>
-      <p><label for="year" style="text-align: justify; font-size: medium; font-family: Script MT Bold; color:black;">Image:</label>
-         <form:input type="file" path="pimage"/>
-      </p>
-      <p><input type="submit" value="addProduct"/></p>
-    </fieldset>
-  </form:form>  
-  </div>
-  </div>
-  </div>    
-<script src="resources/js/bootstrap.js"></script>​
+</body>	
+<jsp:include page="Footer.jsp"></jsp:include>
+
+
 

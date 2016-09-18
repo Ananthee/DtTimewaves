@@ -16,7 +16,7 @@
 </script>
 <jsp:include page="AdminHeader.jsp"></jsp:include>
   <div class="container" color="#D0C0D0;">
-  <form:form commandName="editSupplier">
+  <form:form commandName="editUser">
   <div class="span12" style="text-align: justify; font-size: large; color:black;">
   <div ng-app="repeatSample" ng-controller="UserController">
   <br/><br/>

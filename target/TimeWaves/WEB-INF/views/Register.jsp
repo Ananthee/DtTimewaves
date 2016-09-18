@@ -6,7 +6,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Time Waves</title>
+<title>TimeWaves</title>
+<script type="text/javascript">
+    function Validate() {
+        var pass = document.getElementById("Password").value;
+        var confirmPass = document.getElementById("ConfirmPassword").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>
 </head>
 <%@include file="/WEB-INF/views/Header.jsp"%>
 <body style="background-color:#D0C0D0;">
@@ -17,10 +28,10 @@
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
         		<div class="panel-heading">
-			    		<h3 class="panel-title">sign up</h3>
+			    		<h3 align="center" "panel-title">Create your account</h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form:form id="registerForm" method="POST" name="Register" action="RegistrationSuccess" commandName="registerDetail">
+			    		<form:form id="registerForm" method="POST" name="Register" action="Register" commandName="Register">
 			    		
 			    			<div class="row">
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
@@ -34,11 +45,16 @@
 			    					</div>
 			    				</div>
 			    			</div>
-
 			    			<div class="form-group">
-			    				<input type="email" name="EmailId" id="email" class="form-control input-sm" placeholder="Email Address" required>
+			    				<input type="text" name="UserName" id="User_name" class="form-control input-sm" placeholder="Enter Username" required>
 			    			</div>
 
+			    			<div class="form-group">
+			    				<input type="email" name="EmailId" id="email" class="form-control input-sm" placeholder="Email Id" required>
+			    			</div>
+			    			<div class="form-group">
+			    				<input type="text" name="ContactNo" id="mobile" class="form-control input-sm" placeholder="Contact number" required>
+			    			</div>
 			    			<div class="row">
 			    				<div class="col-xs-6 col-sm-6 col-md-6">
 			    					<div class="form-group">
@@ -50,6 +66,9 @@
 			    						<input type="password" name="ConfirmPassword" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password" required>
 			    					</div>
 			    				</div>
+			    			</div>
+			    			<div class="form-group">
+			    				<input type="text" name="Address" id="Address" class="form-control input-sm" placeholder="Address" required>
 			    			</div>
 			    			
 			    			<input type="submit" value="Register" class="btn btn-info btn-block"  >

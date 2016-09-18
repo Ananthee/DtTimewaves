@@ -3,6 +3,10 @@ package com.times.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;	
+
 @Entity
 
 public class Product {
@@ -12,7 +16,7 @@ public class Product {
 	@Column
 		public String productName;
 	@Column
-		public String sellerId;
+		public String supplierId;
 	@Column
 		public int quantity;
 	@Column
@@ -21,25 +25,14 @@ public class Product {
 		public String description;
 	@Column
 		public String categoryId;
-	@Column
-		public String pimage;
+			
+	@Transient
+	MultipartFile pimage;
 		
+
 public Product()
 {
 	
-}
-
-public Product(String productId, String productName, String sellerId, int quantity, int price, String description,
-		String categoryId,String pimage) {
-	super();
-	this.productId = productId;
-	this.productName = productName;
-	this.sellerId = sellerId;
-	this.quantity = quantity;
-	this.price = price;
-	this.description = description;
-	this.categoryId = categoryId;
-	this.pimage=pimage;
 }
 
 public String getProductId() {
@@ -53,12 +46,6 @@ public String getProductName() {
 }
 public void setProductName(String productName) {
 	this.productName = productName;
-}
-public String getSellerId() {
-	return sellerId;
-}
-public void setSellerId(String sellerId) {
-	this.sellerId = sellerId;
 }
 public int getQuantity() {
 	return quantity;
@@ -78,17 +65,29 @@ public String getDescription() {
 public void setDescription(String description) {
 	this.description = description;
 }
-public String getCategory() {
+public String getSupplierId() {
+	return supplierId;
+}
+
+public void setSupplierId(String supplierId) {
+	this.supplierId = supplierId;
+}
+
+public String getCategoryId() {
 	return categoryId;
 }
-public void setCategory(String categoryId) {
+
+public void setCategoryId(String categoryId) {
 	this.categoryId = categoryId;
 }
-public String getPimage() {
+
+
+public MultipartFile getPimage() {
 	return pimage;
 }
 
-public void setPimage(String pimage) {
+public void setPimage(MultipartFile pimage) {
 	this.pimage = pimage;
 }
+
 }

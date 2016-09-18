@@ -1,3 +1,5 @@
+package com.times.controller;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,7 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
+import com.times.dao.CategoryDAO;
 import com.times.dao.ProductDAO;
+import com.times.dao.SupplierDAO;
 import com.times.model.Category;
 import com.times.model.Product;
 
@@ -28,27 +32,45 @@ public class ProductController
 	@Autowired
 	ProductDAO pdao;
 	
-	//--------------------adding the product-----------------------
+    @Autowired
+    CategoryDAO cdao;
+    
+    @Autowired
+    SupplierDAO sdao;
 	
-	@RequestMapping(value="/addproduct",method=RequestMethod.GET)
-	public ModelAndView addproduct(Model m) 
+	
+	public String getdata()
 	{
-		String[] s=pdao.showcategsupp();
-		System.out.println(s[0]);
-		m.addAttribute("catlist",s[0]);
-		m.addAttribute("supplist",s[1]);		
+		ArrayList list=(ArrayList)pdao.showProduct();
+		Gson gson = new Gson();
+		String jsonInString = gson.toJson(list);
+		return jsonInString;
+	}
+	
+	//Adding a product
+	
+	@RequestMapping(value="/addProduct",method=RequestMethod.GET)
+	public ModelAndView addProduct(Model m) 
+	{
+		Gson gson = new Gson();
+		String catlist=gson.toJson(cdao.DisplayCategory());
+		String supplist=gson.toJson(sdao.showSupplier());
+		m.addAttribute("catlist",catlist);
+		m.addAttribute("supplist",supplist);		
 		ModelAndView mv=new ModelAndView("addProduct","prdt",new Product());
 		return mv;
 
 	}
 	
 	@RequestMapping(value="/addProduct",method=RequestMethod.POST)
-	public String addproduct(@ModelAttribute("prdt")Product prdt, HttpServletRequest request,RedirectAttributes attributes) 
+	public ModelAndView  addproduct(@ModelAttribute("prdt")Product prdt, HttpServletRequest request,RedirectAttributes attributes,Model m) 
 	{
+		System.out.println("Controller called");
 		System.out.println(prdt.getProductId());
+		
 		pdao.addProduct(prdt);
 		
-		String path="C:\\maven project\\TimeWaves\\src\\main\\webapp\\resources";
+		String path="C:\\maven project\\TimeWaves\\src\\main\\webapp\\resources\\";
 		path=path+String.valueOf(prdt.getProductId())+".jpg";
 		System.out.println(path);
 		File f=new File(path);
@@ -76,47 +98,109 @@ public class ProductController
 			System.out.println("File is Empty not Uploaded");
 			
 		}
-		return "Product";
+		m.addAttribute("list",getdata());
+		ModelAndView mv=new ModelAndView("viewProduct","product",new Product());
+		return mv;
 	
 	}
-	//---------------Showing product-----------------
+	//Display the product
 	
-	@RequestMapping(value="/product",method=RequestMethod.GET)
-	public ModelAndView viewCatagory1(Model m)
+	@RequestMapping(value="/viewProduct",method=RequestMethod.GET)
+	public ModelAndView viewProduct(Model m)
 	{
-		ArrayList list=(ArrayList)pdao.showProduct();
+		m.addAttribute("list",getdata());
+		ModelAndView mv=new ModelAndView("viewProduct","product",new Product());
+		return mv;
+	}
+
+	@RequestMapping(value="/deleteProduct",method=RequestMethod.GET)
+	public ModelAndView DeleteProduct(@RequestParam("id")String productId,Model m)
+	{
+		pdao.deleteProduct(productId);
+		m.addAttribute("list",getdata());
+		ModelAndView mv=new ModelAndView("viewProduct","showProduct",new Product());
+		return mv;
+	}
+	
+	@RequestMapping(value="/editProduct",method=RequestMethod.GET)
+	public ModelAndView editProduct(@RequestParam("id")String productId,Model m) 
+	{
+		Product s=pdao.showProduct(productId);
+		Gson gson = new Gson();
+		String catlist=gson.toJson(cdao.DisplayCategory());
+		String supplist=gson.toJson(sdao.showSupplier());
+		m.addAttribute("catlist",catlist);
+		m.addAttribute("supplist",supplist);		
+		ModelAndView mv=new ModelAndView("editProduct","product",s);
+		return mv;
+
+	}
+	
+	@RequestMapping(value="/UpdateProduct",method=RequestMethod.POST)
+	public ModelAndView UpdateProduct(Product product,Model m) 
+	{
+		System.out.println("Controller called");
+		System.out.println(product.getProductId());
+		pdao.editProduct(product);
+		String path="C:\\maven project\\TimeWaves\\src\\main\\webapp\\resources\\";
+		path=path+String.valueOf(product.getProductId())+".jpg";
+		System.out.println(path);
+		File f=new File(path);
+		MultipartFile filedet=product.getPimage();
+		
+		if(!filedet.isEmpty())
+		{
+			try
+			{
+			  byte[] bytes=filedet.getBytes();
+			  System.out.println(bytes.length);
+			  FileOutputStream fos=new FileOutputStream(f);
+              BufferedOutputStream bs=new BufferedOutputStream(fos);
+              bs.write(bytes);
+              bs.close();
+              System.out.println("File Uploaded Successfully");
+			}
+			catch(Exception e)
+			{
+				System.out.println("Exception Arised"+e);
+			}
+		}
+		else
+		{
+			System.out.println("File is Empty not Uploaded");
+			
+		}
+		m.addAttribute("list",getdata());
+		ModelAndView mv=new ModelAndView("viewProduct","product",new Product());
+		return mv;
+	
+
+	}
+	
+	/*@SuppressWarnings("unchecked")
+	@RequestMapping(value="/ppage")
+	public String productPage(Model m)
+	{
+		ArrayList<Product> list=(ArrayList<Product>)pdao.showProduct();
 		Gson gson = new Gson();
 		String jsonInString = gson.toJson(list);
 		m.addAttribute("list",jsonInString);
-		ModelAndView mv=new ModelAndView("Product","product",new Product());
+		return "productPage";
+		
+	}*/
+	
+	@RequestMapping(value="/ProductDescription",method=RequestMethod.GET)
+	public ModelAndView deleteSeller(@RequestParam("id")String categoryId,Model m)
+	{
+		System.out.println(categoryId);
+		Product p=pdao.getproductdata(categoryId);
+		Gson gson = new Gson();
+		String list=gson.toJson(p);
+		System.out.println(list);
+		m.addAttribute("list1",list);
+		ModelAndView mv=new ModelAndView("ProductDescription","product",new Product());
 		return mv;
 	}
 
-	@RequestMapping(value="/delproduct",method=RequestMethod.GET)
-	public ModelAndView DeleteCatagory(@RequestParam("id")int cid,Model m)
-	{
-		pdao.deleteProduct(cid);
-		ModelAndView mv=new ModelAndView("Product","product",new Product());
-		return mv;
-	}
-	
-	@RequestMapping(value="/editproduct",method=RequestMethod.GET)
-	public ModelAndView editcategory(@RequestParam("id")int cid,Model m) 
-	{
-		Product s=pdao.viewProduct(cid);
-		m.addAttribute("Product",s);
-		ModelAndView mv=new ModelAndView("Product","Product",new Product());
-		return mv;
-	}
-	
-	@RequestMapping(value="/editproduct",method=RequestMethod.POST)
-	public ModelAndView editcategory(Product typepro,Model m) 
-	{
-		pdao.updateCatagory(typepro);
-		//m.addAttribute("list",getdata());
-		ModelAndView mv=new ModelAndView("Product","product",new Product());
-		return mv;
-
-	}
 
 }

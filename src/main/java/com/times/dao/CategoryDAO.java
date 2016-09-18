@@ -2,16 +2,12 @@ package com.times.dao;
 
 
 import java.util.List;
-
-
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.times.model.Category;
 import com.times.model.Supplier;
 
@@ -33,7 +29,7 @@ public class CategoryDAO
 		 session.flush();
 		 tx.commit();	 
 	 }
-	 public List displayCategory()
+	 public List DisplayCategory()
 	 {
 		 Session session=sessionFactory.openSession();
 		 Transaction tx=session.getTransaction();
@@ -49,7 +45,6 @@ public class CategoryDAO
 		Transaction tx=	session.getTransaction();
 		tx.begin();
 		Category cat=(Category)session.get(Category.class,c.getCategoryId());
-		cat.setCategoryId(c.getCategoryId());
 		cat.setCategoryName(c.getCategoryName());
 		cat.setCategoryDesc(c.getCategoryDesc());
 		session.update(cat);
@@ -69,7 +64,7 @@ public class CategoryDAO
         tx.commit();
 	}
 	 
-	/* public Category viewCategory(String cat )
+	 public Category getCategory(String cat )
 	 {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.getTransaction();
@@ -78,5 +73,5 @@ public class CategoryDAO
 	    tx.commit();
 	    return c;
 		 
-	 }*/
+	 }
 }

@@ -1,78 +1,66 @@
 package com.times.dao;
 
 import java.util.*;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
 import com.times.model.Category;
 import com.times.model.Product;
 
-@Repository
 
-/*public class ProductDAO {
-	List<Product> proList=new ArrayList<Product>();
-	public String disp_product()
-	{
-		Gson gson=new Gson();
-		proList.add(new Product("Ti01","Titan","Sp01",25,2000,"Leather watch","Strap type"));
-		proList.add(new Product("So01","Sonata","Sp02",50,2000,"Fossil klein watch","bracelet type"));
-		proList.add(new Product("Ro01","Rollex","Sp03",25,2000,"Jwel statinless steel","Strap type"));
-		proList.add(new Product("Qu01","Quartz","Sp04",25,2000,"stella","Strap type"));
-		String jsonToString=gson.toJson(proList);
-		return jsonToString;
-	}
-	}*/
+@Repository
 public class ProductDAO
 {
 @Autowired
-		SessionFactory sessionFactory;
-		public void addProduct(Product p)
-		{
-			System.out.println("Product DAO");
-			System.out.println(p.getProductId());
-			System.out.println(p.getProductName());
-		try
-		{
-			Session session=sessionFactory.openSession();
-			Transaction tx=session.beginTransaction();
-			tx.begin();
-			session.save(p);
-			session.flush();
-			tx.commit();
-			session.close();
-		}
-		catch(Exception e)
-		{
-			System.out.println("Error"+e);
-		}
-		}
+SessionFactory sessionFactory;
 
-public List showProduct()
+
+public void addProduct(Product p)
+{
+System.out.println("Product DAO");
+System.out.println(p.getProductId());
+System.out.println(p.getProductName());
+try
 {
 		Session session=sessionFactory.openSession();
 		Transaction tx=session.getTransaction();
 		tx.begin();
-		List showprod=session.createQuery("from Product").list();
-		session.flush();
+		session.save(p);
 		tx.commit();
+		session.flush();
 		session.close();
+}
+catch(Exception e)
+	{
+		System.out.println("Error"+e);
+	}
+}
+
+public List showProduct()
+{
+		Session session=sessionFactory.openSession();
+		List showprod=session.createQuery("FROM Product").list();
 		return showprod;
 }
+public Product getproductdata(String samplecat)
+{
+		Session s = sessionFactory.openSession();
+		Product c=(Product)s.get(Product.class,samplecat);
+        System.out.println(c);
+        return c;
+}
+
 public Product showProduct(String showprod)
 {
 		Session session = sessionFactory.openSession();
-		Transaction tx = session.getTransaction();
-		tx.begin();
 		Product p=(Product)session.get(Product.class,showprod);
-		session.flush();
-		tx.commit();
-		session.close();
-        return p;
+		System.out.println(p);
+		return p;
 }
 public String[] showcategsupp()
 {
@@ -84,36 +72,43 @@ public String[] showcategsupp()
 		tx.commit();
 		session.flush();
 		session.clear();
-		//session.close();
+		session.close();
 		Gson g=new Gson();
 		String[] cat=new String[2];
 		cat[0]=g.toJson(showcat);
 		cat[1]=g.toJson(showsup);
-		session.close();
 		return cat;
 }
-public void editProduct(Product editprod)
+
+public void editProduct(Product p)
 {
-		Session s=sessionFactory.openSession();
-		Transaction tx=s.getTransaction();
+		Session session=sessionFactory.openSession();
+		Transaction tx=session.getTransaction();
 		tx.begin();
-		//Product p=(Product)s.get(Category.class,editprod.getProductId());
-		Product p=(Product) s.get(Category.class, editprod.getProductId());
-		p.setProductName(editprod.getProductName());
-		p.setProductName(editprod.getProductName());
-		//need to add some more code
-		s.update(p);
+		Product prod=(Product)session.get(Product.class,p.getProductId());
+		prod.setCategoryId(p.getCategoryId());
+		prod.setProductId(p.getProductId());
+		prod.setDescription(p.getDescription());
+		prod.setSupplierId(p.getSupplierId());
+		prod.setPrice(p.getPrice());
+		prod.setQuantity(p.getQuantity());
+		session.update(prod);
 		tx.commit();
+		
 }
-public void deleteProduct(int delprodid)
+public void deleteProduct(String delprodid)
 {
 		Session session = sessionFactory.openSession();
-		Transaction tx = session.getTransaction();
+		Transaction tx  = session.getTransaction();
 		tx.begin();
 		Product p=(Product)session.get(Product.class,delprodid);
 		System.out.println(p);
         session.delete(p); 
         tx.commit();
+        
 }
+
+// product description page
+
 }
 

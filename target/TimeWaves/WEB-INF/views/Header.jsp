@@ -17,20 +17,20 @@
   </style>
   
 </head>
-<body style="background-color:#D0C0D0;">
+<body style="background-color:#D0C0D0;" >
+<!-- background="resources\back1.jpg" -->
 <div class="container-fluid" >
     <div class="navbar-header" >
     <img align="bottom" src="resources/IMG.PNG"  >
-    </div>
+</div>
     <ul class="nav navbar-nav navbar-right">
-      <li class="active"><a href="Home">Home</a></li>
+<li class="active"><a href="Home" style="color:black">Home</a></li>
 <li><a href="AboutUs">AboutUs</a></li>
 <li><a href="Contact">Contact</a></li>
-<li><a href="product">Products</a></li>
+<li><a href="productPage">Products</a></li>
  
        <li><a href="Register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
       <li><a href="Login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-      <li><a href="AdminHeader"><span class="glyphicon glyphicon-log-in"></span>Admin</a></li>
     </ul>
   </div>
 </body>

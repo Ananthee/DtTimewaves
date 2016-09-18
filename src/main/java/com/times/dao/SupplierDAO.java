@@ -3,6 +3,7 @@ package com.times.dao;
 import java.util.*;
 
 
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -31,10 +32,7 @@ public class SupplierDAO {
 	public List showSupplier()
 	{
 		Session s=sessionFactory.openSession();
-		Transaction tx=s.getTransaction();
-		tx.begin();
 		List showsup = s.createQuery("FROM Supplier").list();
-		tx.commit();
 		return showsup;
 	}
 	
@@ -44,10 +42,9 @@ public class SupplierDAO {
 		Transaction tx=	session.getTransaction();
 		tx.begin();
 		Supplier sup=(Supplier)session.get(Supplier.class,s.getSupplierId());
-		sup.setSupplierId(s.getSupplierId());
 		sup.setSupplierName(s.getSupplierName());
 		sup.setSupplierAddress(s.getSupplierAddress());
-		session.update(s);
+		session.update(sup);
 		tx.commit();
 		
 	}
@@ -63,5 +60,15 @@ public class SupplierDAO {
 	    session.flush();
 	    tx.commit();
 	}
-	
+	public Supplier viewSupplier(String sup )
+	 {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.getTransaction();
+		tx.begin();
+	    Supplier s=(Supplier)session.get(Supplier.class,sup);
+	    tx.commit();
+	    return s;
+		 
+	 }
+
 }

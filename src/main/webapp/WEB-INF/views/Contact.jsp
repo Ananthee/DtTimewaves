@@ -8,50 +8,29 @@
 </head>
 <body>
 <%@include file="/WEB-INF/views/Header.jsp"%>
-<div class="container">
-	<div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="well well-sm">
-          <form:form class="form-horizontal" method="POST" action="ContactSuccess" commandName="ContactDetail">
-          <fieldset>
-            <legend class="text-center">Contact us</legend>
+<h3 style="color:white;" align="center">CONTACT </h3>
+<table style="width:60%" border="6" align="center">
+  <tr>
+    <td style="color:white;" height="50">Contact name</td>
+    <td style="color:white;" height="50" align="justify">Ananthee R</td>
+    
+  </tr>
+  <tr>
+    <td style="color:white;" height="50">Contact number</td>
+    <td style="color:white;" height="50">9442527345</td>
     
-            <!-- Name input-->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="name">Name</label>
-              <div class="col-md-9">
-                <input id="name" name="name" type="text" placeholder="Your name" class="form-control">
-              </div>
-            </div>
+  </tr>
+  <tr>
+    <td style="color:white;" height="50">Email - id</td>
+    <td style="color:white;" height="50">timewaves@gmail.com</td>
     
-            <!-- Email input-->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="email">Your E-mail</label>
-              <div class="col-md-9">
-                <input id="email" name="email" type="text" placeholder="Your email" class="form-control">
-              </div>
-            </div>
+  </tr>
+  <tr>
+    <td style="color:white;" height="50">Address</td>
+    <td style="color:white;" height="50">No. 21,pillayar kovil street,madurai</td>
     
-            <!-- Message body -->
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="message">Your message</label>
-              <div class="col-md-9">
-                <textarea class="form-control" id="message" name="message" placeholder="Please enter your message here..." rows="5"></textarea>
-              </div>
-            </div>
-    
-            <!-- Form actions -->
-            <div class="form-group">
-              <div class="col-md-12 text-right">
-                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-              </div>
-            </div>
-          </fieldset>
-          </form:form>
-        </div>
-      </div>
-	</div>
-</div>
+  </tr>
+</table>
 <%@include file="/WEB-INF/views/Footer.jsp"%>
 </body>
 </html>

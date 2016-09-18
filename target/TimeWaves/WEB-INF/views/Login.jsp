@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Timewaves</title>
 </head>
-<body style="background-color:#D0C0D0;">
+<body style="background-color:#D0C0D0;" >
+<%@include file="/WEB-INF/views/Header.jsp"%>
     <div class="container" style="margin-top:40px">
 		<div class="row">
 			<div class="col-sm-6 col-md-4 col-md-offset-4">
@@ -15,12 +16,11 @@
 						<strong>  Sign-in </strong>
 					</div>
 					<div class="panel-body">
-						<form:form class="form" method="POST" name="Login" action="LoginSuccess" commandName="LoginDetail">
+					<form action="perform_login" method="POST">
 							<fieldset>
 								<div class="row">
 									<div class="center-block" align="center">
-										<img class="profile-img"
-											src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
+										<img src="resources/download.png" alt="">
 									</div>
 								</div>
 								<div class="row">
@@ -30,7 +30,8 @@
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-user"></i>
 												</span> 
-												<input class="form-control" placeholder="Username" name="loginname" type="text" autofocus required>
+												<input type="text" placeholder="Username" required id="username" name="username" 
+						pattern=".{5,10}" title="minimum length for username is 5"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -38,20 +39,20 @@
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-lock"></i>
 												</span>
-												<form:input class="form-control" placeholder="Password" name="password" type="password" value="" required></form:input>
+												<input type="password" placeholder="Password" required id="password" name="password" 
+					title="Enter Valid credentials"/>
 											</div>
 										</div>
 										<div class="form-group">
-											<form:input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in"></form:input>
+										<input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in"></input>
 										</div>
 									</div>
 								</div>
-							</fieldset>
-						</form:form>
+								</fieldset>
+								</form>
+						
 					</div>
-					<div class="panel-footer ">
-						Don't have an account! <a href="#" onClick=""> Sign Up Here </a>
-					</div>
+					
                 </div>
 			</div>
 		</div>
